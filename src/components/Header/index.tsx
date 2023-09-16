@@ -1,4 +1,4 @@
-import FaceButton from '@components/FaceButton';
+import FaceButton from '@/components/FaceButton';
 import * as S from './styles';
 import Counter from '@components/Counter';
 

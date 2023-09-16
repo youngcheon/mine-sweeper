@@ -1,5 +1,6 @@
 import useControl from '@hook/useControl';
 import * as S from './styles';
+import getFaceEmoji from '@utils/getFaceEmoji';
 
 const FaceButton = () => {
     const {gameState, start} = useControl();
@@ -10,7 +11,7 @@ const FaceButton = () => {
 
     return (
         <S.Container onClick={restart}>
-            <S.Icon>🙂</S.Icon>
+            <S.Icon>{getFaceEmoji(gameState.status)}</S.Icon>
         </S.Container>
     );
 };
