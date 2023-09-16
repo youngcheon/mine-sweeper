@@ -32,6 +32,5 @@ export enum CELL_STATUS {
     MINE = 'MINE', // 지뢰
     FLAG = 'FLAG', // 깃발
     UNKNOWN = 'UNKNOWN', // 물음표
-    WARN = 'WARN', //숫자
     NONE = 'NONE', //열지않음
 }

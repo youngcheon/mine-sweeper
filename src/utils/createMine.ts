@@ -1,9 +1,9 @@
-import {ICell, Position} from '@/types/common';
+import {Board, Position} from '@/types/common';
 import {getRandomNumber} from './getRandomNumber';
-import {isEqual} from 'lodash';
+import isNearby from './isNearby';
 
 interface CreateMineProps {
-    board: ICell[][];
+    board: Board;
     mineCount: number;
     currentPosition: Position;
 }
@@ -26,9 +26,11 @@ const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
         }
 
         /**
-         * @NOTE 첫 시작부터 지뢰를 선택하지 않기위해 클릭한 위치를 제외하고 생성합니다.
+         * @NOTE 첫 시작부터 지뢰를 선택하지 않기위해
+         *       클릭한 주변의 좌표를 제외하고 지뢰를 생성합니다.
+         *       첫 클릭한 지점은 반드시 NONE 상태입니다.
          */
-        if (!isEqual(currentPosition, {x, y})) {
+        if (!isNearby(currentPosition, {x, y})) {
             board[y][x].$isMine = true;
             remainMineCount--;
         }
