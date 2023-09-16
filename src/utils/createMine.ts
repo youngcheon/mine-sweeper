@@ -1,4 +1,4 @@
-import {Board, Position} from '@/types/common';
+import {Board, CELL_STATUS, Position} from '@/types/common';
 import {getRandomNumber} from './getRandomNumber';
 import isNearby from './isNearby';
 
@@ -21,7 +21,7 @@ const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
         const x = getRandomNumber(width);
         const y = getRandomNumber(height);
 
-        if (board[y][x].$isMine) {
+        if (board[y][x].status === CELL_STATUS.MINE) {
             continue;
         }
 
@@ -31,7 +31,7 @@ const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
          *       첫 클릭한 지점은 반드시 NONE 상태입니다.
          */
         if (!isNearby(currentPosition, {x, y})) {
-            board[y][x].$isMine = true;
+            board[y][x].status = CELL_STATUS.MINE;
             remainMineCount--;
         }
     }

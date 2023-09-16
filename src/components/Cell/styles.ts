@@ -1,4 +1,5 @@
-import {ICell} from '@/types/common';
+import {TEXT_COLOR} from '@/constant';
+import {CELL_STATUS, ICell} from '@/types/common';
 import {css, styled} from 'styled-components';
 
 export const Box = styled.div<Partial<ICell>>`
@@ -33,9 +34,13 @@ export const Box = styled.div<Partial<ICell>>`
         typeof status === 'number' &&
         css`
             font-size: 30px;
-            color: ${getTextColor[status]};
+            color: ${TEXT_COLOR[status]};
             font-weight: 900;
         `}
-`;
 
-const getTextColor = ['', 'blue', 'green', 'red', 'navy', 'maroon', 'teal', 'black', 'gray'] as const;
+    ${({status}) =>
+        status === CELL_STATUS.CLICKED_MINE &&
+        css`
+            background-color: red;
+        `}
+`;

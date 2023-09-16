@@ -1,11 +1,11 @@
-import {ICell} from '@/types/common';
+import {CELL_STATUS, GAME_STATUS, ICell} from '@/types/common';
 import * as S from './styles';
 import getCellText from '@utils/getCellText';
 import useControl from '@hook/useControl';
 import {MouseEvent} from 'react';
 
 export const Cell: React.FC<ICell> = ({x, y, status, ...props}) => {
-    const {click, rightClick} = useControl();
+    const {gameState, click, rightClick} = useControl();
 
     const handleLeftClick = () => click(x, y);
     const handleRightClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -13,9 +13,13 @@ export const Cell: React.FC<ICell> = ({x, y, status, ...props}) => {
         rightClick(x, y);
     };
 
+    if (gameState.status === GAME_STATUS.LOSE && status === CELL_STATUS.MINE) {
+        return <S.Box>💣</S.Box>;
+    }
+
     return (
         <S.Box {...props} onClick={handleLeftClick} onContextMenu={handleRightClick} status={status}>
-            {getCellText(status)}
+            {props.$isOpened && getCellText(status)}
         </S.Box>
     );
 };
