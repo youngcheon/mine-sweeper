@@ -19,7 +19,7 @@ export const Cell: React.FC<ICell> = ({x, y, status, ...props}) => {
 
     return (
         <S.Box {...props} onClick={handleLeftClick} onContextMenu={handleRightClick} status={status}>
-            {props.$isOpened && getCellText(status)}
+            {getCellText(status)}
         </S.Box>
     );
 };
