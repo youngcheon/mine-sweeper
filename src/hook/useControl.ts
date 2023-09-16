@@ -15,5 +15,9 @@ export default function useControl() {
         dispatch(store.click({x, y}));
     }, []);
 
-    return {gameState, start, click} as const;
+    const rightClick = useCallback((x: number, y: number) => {
+        dispatch(store.rightClick({x, y}));
+    }, []);
+
+    return {gameState, start, click, rightClick} as const;
 }

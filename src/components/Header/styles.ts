@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
     display: flex;
-    height: fit-content;
+    height: 60px;
     width: 100%;
     padding-block: 10px;
     flex-direction: row;

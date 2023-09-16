@@ -22,7 +22,7 @@ const slice = createSlice({
         /**
          * @NOTE : 게임을 시작할 때 사용하는 리듀서
          */
-        start: (state, action: PayloadAction<{width: number; height: number; mineCount: number}>) => {
+        start: (_state, action: PayloadAction<{width: number; height: number; mineCount: number}>) => {
             const {width, height, mineCount} = action.payload;
             return {
                 board: createBoard({width, height}),
@@ -57,6 +57,7 @@ const slice = createSlice({
 
                 // @NOTE : 지뢰밟음 - 게임 종료
                 if (currentCell.$isMine) {
+                    currentCell.status = CELL_STATUS.MINE;
                     state.status = GAME_STATUS.LOSE;
                     return;
                 } else {
@@ -70,6 +71,29 @@ const slice = createSlice({
                 }
             }
         },
+        /**
+         * @NOTE : 우클릭 (깃발) 로직 담당 리듀서
+         */
+        rightClick: (state, action: PayloadAction<Position>) => {
+            const {x, y} = action.payload;
+            const currentCell = state.board[y][x];
+
+            switch (currentCell.status) {
+                case CELL_STATUS.NONE:
+                    if (state.flagCount === 0) {
+                        return;
+                    }
+                    currentCell.status = CELL_STATUS.FLAG;
+                    state.flagCount--;
+                    break;
+                case CELL_STATUS.FLAG:
+                    state.flagCount++;
+                    currentCell.status = CELL_STATUS.UNKNOWN;
+                    break;
+                default:
+                    break;
+            }
+        },
     },
 });
 
@@ -79,6 +103,6 @@ const store = configureStore({
 
 export type RootSate = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const {start, click} = slice.actions;
+export const {start, click, rightClick} = slice.actions;
 
 export default store;

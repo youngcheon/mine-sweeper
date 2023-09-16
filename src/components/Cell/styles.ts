@@ -10,6 +10,7 @@ export const Box = styled.div<Partial<ICell>>`
     justify-content: center;
     font-size: 18px;
     user-select: none;
+    border: 1px solid grey;
 
     ${({$isOpened}) =>
         !$isOpened &&

@@ -4,10 +4,19 @@ import getCellText from '@utils/getCellText';
 import useControl from '@hook/useControl';
 
 export const Cell: React.FC<ICell> = ({x, y, status, ...props}) => {
-    const {click} = useControl();
+    const {click, rightClick} = useControl();
 
     return (
-        <S.Box {...props} onClick={() => click(x, y)}>
+        <S.Box
+            {...props}
+            onClick={() => {
+                click(x, y);
+            }}
+            onContextMenu={(e) => {
+                e.preventDefault();
+                rightClick(x, y);
+            }}
+        >
             {getCellText(status)}
         </S.Box>
     );
