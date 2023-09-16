@@ -5,11 +5,6 @@ const GlobalStyle = createGlobalStyle`
     /* Reset CSS */
     ${reset}
 
-    @font-face {
-        font-family: "DungGeunMo";
-        src: url('../public/fonts/DungGeunMo.woff');
-    }
-
     * {
         margin : 0;
         padding : 0;
