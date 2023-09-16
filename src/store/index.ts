@@ -81,6 +81,7 @@ const slice = createSlice({
 
             switch (currentCell.status) {
                 case CELL_STATUS.NONE:
+                case CELL_STATUS.MINE:
                     if (state.flagCount === 0) {
                         return;
                     }
