@@ -25,7 +25,7 @@ export default function getAroundMineCount(board: Board, position: Position) {
         const newY = position.y + dy;
 
         if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
-            if (board[newY][newX].isMine) {
+            if (board[newY][newX].$isMine) {
                 mineCount++;
             }
         }

@@ -16,8 +16,8 @@ export interface Position {
 }
 
 export interface ICell extends Position {
-    isOpened: boolean;
-    isMine: boolean;
+    $isOpened: boolean;
+    $isMine: boolean;
     status: CELL_STATUS | number;
 }
 

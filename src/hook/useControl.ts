@@ -11,5 +11,9 @@ export default function useControl() {
         dispatch(store.start({width, height, mineCount}));
     }, []);
 
-    return {gameState, start} as const;
+    const click = useCallback((x: number, y: number) => {
+        dispatch(store.click({x, y}));
+    }, []);
+
+    return {gameState, start, click} as const;
 }

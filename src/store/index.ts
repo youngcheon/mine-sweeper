@@ -1,8 +1,8 @@
-import {CELL_STATUS, ControlProps, GAME_STATUS, Position} from '@/types/common';
-import createBoard from '@/utils/createBoard';
-import createMine from '@/utils/createMine';
-import openEmptyCells from '@/utils/openEmptyCells';
+import createBoard from '@utils/createBoard';
+import createMine from '@utils/createMine';
+import openEmptyCells from '@utils/openEmptyCells';
 import {PayloadAction, configureStore, createSlice} from '@reduxjs/toolkit';
+import {CELL_STATUS, ControlProps, GAME_STATUS, Position} from '@/types/common';
 
 const initialState: ControlProps = {
     board: [],
@@ -28,9 +28,9 @@ const slice = createSlice({
         /**
          * @NOTE : 좌클릭을 했을때 사용하는 리듀서
          */
-        click: (state, action: PayloadAction<{position: Position}>) => {
-            const {position} = action.payload;
-            const currentCell = state.board[position.y][position.x];
+        click: (state, action: PayloadAction<Position>) => {
+            const {x, y} = action.payload;
+            const currentCell = state.board[y][x];
 
             if (currentCell.status === CELL_STATUS.FLAG || currentCell.status === CELL_STATUS.UNKNOWN) {
                 return;
@@ -38,19 +38,19 @@ const slice = createSlice({
 
             if (state.status === GAME_STATUS.READY) {
                 // @NOTE : 첫 클릭시 지뢰 생성
-                state.board = createMine({board: state.board, mineCount: state.mineCount, currentPosition: position});
-                state.openCount = openEmptyCells(state.board, position, state.openCount);
+                state.board = createMine({board: state.board, mineCount: state.mineCount, currentPosition: {x, y}});
+                state.openCount = openEmptyCells(state.board, {x, y}, state.openCount);
 
                 state.status = GAME_STATUS.PLAYING;
             } else if (state.status === GAME_STATUS.PLAYING) {
                 // @NOTE : 첫클릭 아닐경우
 
                 // @NOTE : 지뢰밟음 - 게임 종료
-                if (currentCell.isMine) {
+                if (currentCell.$isMine) {
                     state.status = GAME_STATUS.LOSE;
                     return;
                 } else {
-                    state.openCount = openEmptyCells(state.board, position, state.openCount);
+                    state.openCount = openEmptyCells(state.board, {x, y}, state.openCount);
                 }
 
                 // @NOTE : 승리조건

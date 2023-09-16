@@ -16,8 +16,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html, body, #root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100vh;
         width: 100vw;
+        background-color: #2b2b2b;
     }
 
     * {

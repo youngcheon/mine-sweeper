@@ -8,7 +8,7 @@ export default function openEmptyCells(board: Board, position: Position, openCou
     const width = board[0].length;
 
     currentCell.status = getAroundMineCount(board, position);
-    currentCell.isOpened = true;
+    currentCell.$isOpened = true;
 
     const directions = [
         [-1, -1],
@@ -26,7 +26,7 @@ export default function openEmptyCells(board: Board, position: Position, openCou
         const newY = position.y + dy;
 
         if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
-            if (board[newY][newX].isOpened === false) {
+            if (board[newY][newX].$isOpened === false) {
                 openCount = openEmptyCells(board, {x: newX, y: newY}, openCount + 1);
             }
         }

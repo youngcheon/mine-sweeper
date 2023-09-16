@@ -21,7 +21,7 @@ const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
         const x = getRandomNumber(width);
         const y = getRandomNumber(height);
 
-        if (board[y][x].isMine) {
+        if (board[y][x].$isMine) {
             continue;
         }
 
@@ -29,7 +29,7 @@ const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
          * @NOTE 첫 시작부터 지뢰를 선택하지 않기위해 클릭한 위치를 제외하고 생성합니다.
          */
         if (!isEqual(currentPosition, {x, y})) {
-            board[y][x].isMine = true;
+            board[y][x].$isMine = true;
             remainMineCount--;
         }
     }

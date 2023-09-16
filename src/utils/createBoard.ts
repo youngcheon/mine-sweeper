@@ -17,8 +17,8 @@ const createBoard = ({width, height}: CreateBoardProps) => {
             row.push({
                 x,
                 y,
-                isOpened: false,
-                isMine: false,
+                $isOpened: false,
+                $isMine: false,
                 status: CELL_STATUS.NONE,
             });
         }

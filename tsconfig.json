@@ -21,13 +21,14 @@
         "noFallthroughCasesInSwitch": true,
         "baseUrl": "src",
         "paths": {
-            "@/*": ["*"],
             "@components/*": ["components/*"],
             "@styles/*": ["styles/*"],
             "@store/*": ["store/*"],
             "@hook/*": ["hook/*"],
             "@pages/*": ["pages/*"],
-            "@types/*": ["types/*"]
+            "@types/*": ["types/*"],
+            "@utils/*": ["utils/*"],
+            "@/*": ["*"]
         }
     },
     "include": ["src"],
