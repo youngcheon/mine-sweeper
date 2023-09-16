@@ -90,6 +90,9 @@ const slice = createSlice({
                     state.flagCount++;
                     currentCell.status = CELL_STATUS.UNKNOWN;
                     break;
+                case CELL_STATUS.UNKNOWN:
+                    currentCell.status = CELL_STATUS.NONE;
+                    break;
                 default:
                     break;
             }
@@ -104,7 +107,7 @@ const slice = createSlice({
 });
 
 const store = configureStore({
-    reducer: slice.reducer,
+    reducer: {game: slice.reducer},
 });
 
 export type RootSate = ReturnType<typeof store.getState>;

@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as store from '@/store';
 import {useCallback} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
 export default function useControl() {
-    const gameState = useSelector((state: store.RootSate) => state);
+    const gameState = useSelector((state: store.RootSate) => state.game, shallowEqual);
     const dispatch = useDispatch();
 
     const start = useCallback((width: number, height: number, mineCount: number) => {

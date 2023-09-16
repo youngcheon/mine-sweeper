@@ -1,3 +1,4 @@
+import {DIRECTIONS} from '@/constant';
 import {Board, Position} from '@/types/common';
 
 /**
@@ -9,18 +10,7 @@ export default function getAroundMineCount(board: Board, position: Position) {
 
     let mineCount = 0;
 
-    const directions = [
-        [-1, -1],
-        [-1, 0],
-        [-1, 1],
-        [0, -1],
-        [0, 1],
-        [1, -1],
-        [1, 0],
-        [1, 1],
-    ];
-
-    for (const [dx, dy] of directions) {
+    for (const [dx, dy] of DIRECTIONS) {
         const newX = position.x + dx;
         const newY = position.y + dy;
 
