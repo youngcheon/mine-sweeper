@@ -13,13 +13,13 @@ export const Cell: React.FC<ICell> = ({x, y, status, ...props}) => {
         rightClick(x, y);
     };
 
-    if (gameState.status === GAME_STATUS.LOSE && status === CELL_STATUS.MINE) {
+    if (gameState.status === GAME_STATUS.LOSE && props.$isMine && status !== CELL_STATUS.CLICKED_MINE) {
         return <S.Box>💣</S.Box>;
     }
 
     return (
         <S.Box {...props} onClick={handleLeftClick} onContextMenu={handleRightClick} status={status}>
-            {getCellText(status)}
+            {props.$isOpened && getCellText(status)}
         </S.Box>
     );
 };

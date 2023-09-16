@@ -56,7 +56,7 @@ const slice = createSlice({
                 // @NOTE : 첫클릭 아닐경우
 
                 // @NOTE : 지뢰밟음 - 게임 종료
-                if (currentCell.status === CELL_STATUS.MINE) {
+                if (currentCell.$isMine) {
                     currentCell.$isOpened = true;
                     currentCell.status = CELL_STATUS.CLICKED_MINE;
                     state.status = GAME_STATUS.LOSE;
@@ -81,7 +81,6 @@ const slice = createSlice({
 
             switch (currentCell.status) {
                 case CELL_STATUS.NONE:
-                case CELL_STATUS.MINE:
                     if (state.flagCount === 0) {
                         return;
                     }
