@@ -5,13 +5,14 @@ import {PayloadAction, configureStore, createSlice} from '@reduxjs/toolkit';
 import {CELL_STATUS, ControlProps, GAME_STATUS, Position} from '@/types/common';
 
 const initialState: ControlProps = {
-    board: [],
+    board: createBoard({width: 8, height: 8}),
     width: 8,
     height: 8,
     mineCount: 10,
     status: GAME_STATUS.READY,
     timer: 0,
     openCount: 0,
+    flagCount: 10,
 };
 
 const slice = createSlice({
@@ -23,7 +24,16 @@ const slice = createSlice({
          */
         start: (state, action: PayloadAction<{width: number; height: number; mineCount: number}>) => {
             const {width, height, mineCount} = action.payload;
-            return {...state, width, height, mineCount, board: createBoard({width, height})};
+            return {
+                board: createBoard({width, height}),
+                timer: 0,
+                openCount: 0,
+                status: GAME_STATUS.READY,
+                width,
+                height,
+                mineCount,
+                flagCount: mineCount,
+            };
         },
         /**
          * @NOTE : 좌클릭을 했을때 사용하는 리듀서

@@ -5,8 +5,10 @@ import * as S from '@/styles';
 function App() {
     return (
         <S.Container>
-            <Header />
-            <Board />
+            <S.Wrapper>
+                <Header />
+                <Board />
+            </S.Wrapper>
         </S.Container>
     );
 }

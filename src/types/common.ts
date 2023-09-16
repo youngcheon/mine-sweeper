@@ -6,6 +6,7 @@ export interface ControlProps {
     status: GAME_STATUS;
     timer: number;
     openCount: number;
+    flagCount: number;
 }
 
 export type Board = ICell[][];
