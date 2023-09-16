@@ -9,7 +9,7 @@ interface CreateMineProps {
 }
 
 /**
- * @NOTE : 지뢰를 생성하는 함수, 랜덤으로 지뢰의 위치를 생성하고 위치가 담긴 Array를 반환합니다.
+ * @NOTE : 지뢰를 생성하는 함수
  */
 const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
     let remainMineCount = mineCount;
@@ -28,10 +28,12 @@ const createMine = ({board, mineCount, currentPosition}: CreateMineProps) => {
         /**
          * @NOTE 첫 시작부터 지뢰를 선택하지 않기위해 클릭한 위치를 제외하고 생성합니다.
          */
-        if (isEqual(currentPosition, {x, y})) {
+        if (!isEqual(currentPosition, {x, y})) {
+            board[y][x].isMine = true;
             remainMineCount--;
         }
     }
+    return board;
 };
 
 export default createMine;
