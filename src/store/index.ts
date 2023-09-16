@@ -94,6 +94,12 @@ const slice = createSlice({
                     break;
             }
         },
+        /**
+         * @NOTE : 타이머 1증가 리듀서
+         */
+        increaseTimer: (state) => {
+            state.timer++;
+        },
     },
 });
 
@@ -103,6 +109,6 @@ const store = configureStore({
 
 export type RootSate = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const {start, click, rightClick} = slice.actions;
+export const {start, click, rightClick, increaseTimer} = slice.actions;
 
 export default store;

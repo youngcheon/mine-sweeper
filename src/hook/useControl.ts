@@ -19,5 +19,9 @@ export default function useControl() {
         dispatch(store.rightClick({x, y}));
     }, []);
 
-    return {gameState, start, click, rightClick} as const;
+    const increaseTimer = useCallback(() => {
+        dispatch(store.increaseTimer());
+    }, []);
+
+    return {gameState, start, click, rightClick, increaseTimer} as const;
 }
