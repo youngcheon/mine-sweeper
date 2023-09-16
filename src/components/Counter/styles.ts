@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Number = styled.span`
     display: flex;
-    font-size: 40px;
-
+    font-size: 50px;
+    font-family: 'DungGeunMo';
     color: red;
 `;

@@ -4,7 +4,6 @@ export const Container = styled.div`
     display: flex;
     width: 50px;
     height: 50px;
-    cursor: pointer;
     text-align: center;
     font-size: 30px;
     justify-content: center;

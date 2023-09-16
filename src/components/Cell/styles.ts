@@ -8,9 +8,10 @@ export const Box = styled.div<Partial<ICell>>`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 15px;
     user-select: none;
     border: 1px solid grey;
+    font-family: 'DungGeunMo';
 
     ${({$isOpened}) =>
         !$isOpened &&
@@ -27,4 +28,14 @@ export const Box = styled.div<Partial<ICell>>`
                 border-bottom: 3px solid white;
             }
         `}
+
+    ${({status}) =>
+        typeof status === 'number' &&
+        css`
+            font-size: 30px;
+            color: ${getTextColor[status]};
+            font-weight: 900;
+        `}
 `;
+
+const getTextColor = ['', 'blue', 'green', 'red', 'navy', 'maroon', 'teal', 'black', 'gray'] as const;
