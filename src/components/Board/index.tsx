@@ -9,7 +9,7 @@ export default function Board() {
     const isOver = [GAME_STATUS.LOSE, GAME_STATUS.WIN].includes(gameState.status);
 
     return (
-        <S.Grid cols={height} isOver={isOver}>
+        <S.Grid cols={height} $isOver={isOver}>
             {board.map((row, i) => row.map((cell, j) => <Cell key={`${i}-${j}`} {...cell} />))}
         </S.Grid>
     );

@@ -1,4 +1,4 @@
-import {Board, CELL_STATUS} from '@/types/common';
+import {Board, CELL_VALUE} from '@/types/common';
 
 interface CreateBoardProps {
     width: number;
@@ -19,7 +19,7 @@ const createBoard = ({width, height}: CreateBoardProps) => {
                 y,
                 $isMine: false,
                 $isOpened: false,
-                status: CELL_STATUS.NONE,
+                $value: CELL_VALUE.NONE,
             });
         }
         board.push(row);

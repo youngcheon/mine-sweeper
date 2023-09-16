@@ -11,13 +11,13 @@ export default function openEmptyCells(board: Board, position: Position, openCou
     const height = board.length;
     const width = board[0].length;
 
-    currentCell.status = getAroundMineCount(board, position);
+    currentCell.$value = getAroundMineCount(board, position);
     currentCell.$isOpened = true;
 
     let newOpenCount = openCount + 1;
 
     // @NOTE : 주변에 폭탄이 있으면 탐색을 종료합니다.
-    if (currentCell.status > 0) {
+    if (currentCell.$value > 0) {
         return newOpenCount;
     }
 

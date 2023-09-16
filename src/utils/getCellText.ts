@@ -1,14 +1,14 @@
-import {CELL_STATUS} from '@/types/common';
+import {CELL_VALUE} from '@/types/common';
 
-export default function getCellText(status: CELL_STATUS | number) {
+export default function getCellText(status: CELL_VALUE | number) {
     switch (status) {
-        case CELL_STATUS.NONE:
+        case CELL_VALUE.NONE:
             return '';
-        case CELL_STATUS.CLICKED_MINE:
+        case CELL_VALUE.CLICKED_MINE:
             return '💣';
-        case CELL_STATUS.UNKNOWN:
+        case CELL_VALUE.UNKNOWN:
             return '?';
-        case CELL_STATUS.FLAG:
+        case CELL_VALUE.FLAG:
             return '🚩';
         case 0:
             return '';

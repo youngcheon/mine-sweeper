@@ -2,7 +2,7 @@ import createBoard from '@utils/createBoard';
 import createMine from '@utils/createMine';
 import openEmptyCells from '@utils/openEmptyCells';
 import {PayloadAction, configureStore, createSlice} from '@reduxjs/toolkit';
-import {CELL_STATUS, ControlProps, GAME_STATUS, Position} from '@/types/common';
+import {CELL_VALUE, ControlProps, GAME_STATUS, Position} from '@/types/common';
 
 const initialState: ControlProps = {
     board: createBoard({width: 8, height: 8}),
@@ -42,7 +42,7 @@ const slice = createSlice({
             const {x, y} = action.payload;
             const currentCell = state.board[y][x];
 
-            if (currentCell.status === CELL_STATUS.FLAG || currentCell.status === CELL_STATUS.UNKNOWN) {
+            if (currentCell.$value === CELL_VALUE.FLAG || currentCell.$value === CELL_VALUE.UNKNOWN) {
                 return;
             }
 
@@ -58,7 +58,7 @@ const slice = createSlice({
                 // @NOTE : 지뢰밟음 - 게임 종료
                 if (currentCell.$isMine) {
                     currentCell.$isOpened = true;
-                    currentCell.status = CELL_STATUS.CLICKED_MINE;
+                    currentCell.$value = CELL_VALUE.CLICKED_MINE;
                     state.status = GAME_STATUS.LOSE;
                     return;
                 } else {
@@ -79,20 +79,20 @@ const slice = createSlice({
             const {x, y} = action.payload;
             const currentCell = state.board[y][x];
 
-            switch (currentCell.status) {
-                case CELL_STATUS.NONE:
+            switch (currentCell.$value) {
+                case CELL_VALUE.NONE:
                     if (state.flagCount === 0) {
                         return;
                     }
-                    currentCell.status = CELL_STATUS.FLAG;
+                    currentCell.$value = CELL_VALUE.FLAG;
                     state.flagCount--;
                     break;
-                case CELL_STATUS.FLAG:
+                case CELL_VALUE.FLAG:
                     state.flagCount++;
-                    currentCell.status = CELL_STATUS.UNKNOWN;
+                    currentCell.$value = CELL_VALUE.UNKNOWN;
                     break;
-                case CELL_STATUS.UNKNOWN:
-                    currentCell.status = CELL_STATUS.NONE;
+                case CELL_VALUE.UNKNOWN:
+                    currentCell.$value = CELL_VALUE.NONE;
                     break;
                 default:
                     break;

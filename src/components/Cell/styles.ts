@@ -1,11 +1,11 @@
 import {TEXT_COLOR} from '@/constant';
-import {CELL_STATUS, ICell} from '@/types/common';
+import {CELL_VALUE, ICell} from '@/types/common';
 import {css, styled} from 'styled-components';
 
 export const Box = styled.div<Partial<ICell>>`
     width: 30px;
     height: 30px;
-    background-color: #c0c0c0;
+    background-color: ${(props) => (props.$value === CELL_VALUE.CLICKED_MINE ? 'red' : '#c0c0c0')};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,17 +30,11 @@ export const Box = styled.div<Partial<ICell>>`
             }
         `}
 
-    ${({status}) =>
-        typeof status === 'number' &&
+    ${({$value}) =>
+        typeof $value === 'number' &&
         css`
             font-size: 30px;
-            color: ${TEXT_COLOR[status]};
+            color: ${TEXT_COLOR[$value]};
             font-weight: 900;
-        `}
-
-    ${({status}) =>
-        status === CELL_STATUS.CLICKED_MINE &&
-        css`
-            background-color: red;
         `}
 `;
