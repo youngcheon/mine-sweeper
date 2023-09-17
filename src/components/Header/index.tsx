@@ -2,7 +2,7 @@ import FaceButton from '@/components/FaceButton';
 import * as S from './styles';
 import Counter from '@components/Counter';
 import useControl from '@hook/useControl';
-import useInterval from '@hook/useTimer';
+import useInterval from '@hook/useInterval';
 import {GAME_STATUS} from '@/types/common';
 
 export default function Header() {

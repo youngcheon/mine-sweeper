@@ -6,8 +6,8 @@ export const Container = styled.main`
     width: fit-content;
     height: fit-content;
     background-color: #c0c0c0;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 5px;
+    padding: 10px;
 `;
 
 export const Wrapper = styled.div`
@@ -20,8 +20,8 @@ export const Wrapper = styled.div`
     text-align: center;
     background-color: #c0c0c0;
     padding: 10px;
-    border-top: 3px solid white;
-    border-left: 3px solid white;
-    border-right: 3px solid darkslategray;
-    border-bottom: 3px solid darkslategray;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid darkslategray;
+    border-bottom: 2px solid darkslategray;
 `;

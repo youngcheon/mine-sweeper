@@ -1,3 +1,5 @@
+import {ReactElement} from 'react';
+
 export interface ControlProps {
     board: Board;
     width: number;
@@ -34,4 +36,10 @@ export enum CELL_VALUE {
     FLAG = 'FLAG', // 깃발
     UNKNOWN = 'UNKNOWN', // 물음표
     NONE = 'NONE', //열지않음
+}
+
+export interface ModalState {
+    isOpen: boolean;
+    title: string;
+    content?: ReactElement | string;
 }
