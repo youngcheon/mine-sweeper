@@ -5,11 +5,11 @@ import {GAME_STATUS} from '@/types/common';
 
 export default function Board() {
     const {gameState} = useControl();
-    const {board, height} = gameState;
+    const {board, width} = gameState;
     const isOver = [GAME_STATUS.LOSE, GAME_STATUS.WIN].includes(gameState.status);
 
     return (
-        <S.Grid cols={height} $isOver={isOver}>
+        <S.Grid cols={width} $isOver={isOver}>
             {board.map((row, i) => row.map((cell, j) => <Cell key={`${i}-${j}`} {...cell} />))}
         </S.Grid>
     );
